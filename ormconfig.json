@@ -1,0 +1,30 @@
+{
+   "type": "mysql",
+   "host": "localhost",
+   "port": 8080,
+   "username": "",
+   "password": "",
+   "database": "",
+   "synchronize": false,
+   "logging": false,
+   "ssl": true,
+   "extra": {
+      "ssl": {
+         "rejectUnauthorized": false
+      }
+   },
+   "entities": [
+      "src/entity/**/*.ts"
+   ],
+   "migrations": [
+      "src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+   }
+}
