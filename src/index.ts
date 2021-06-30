@@ -12,12 +12,11 @@ const app: express.Application = express();
 app.use(json());
 app.use(cors());
 app.use(morgan("dev"));
-
 app.use(Router);
 
 createConnection()
   .then(async (_connection: Connection) => {
-    app.listen(8000, () => {
+    app.listen(3000, () => {
       console.log("server started.");
     });
   })
