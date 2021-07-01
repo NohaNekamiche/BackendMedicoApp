@@ -5,7 +5,7 @@ import * as express from "express";
 import { json } from "express";
 import * as cors from "cors";
 import * as morgan from "morgan";
-import Router from "./routes/";
+import routes from "./Routers";
 
 const app: express.Application = express();
 
