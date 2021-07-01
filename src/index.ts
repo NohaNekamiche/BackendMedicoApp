@@ -12,7 +12,7 @@ const app: express.Application = express();
 app.use(json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use(Router);
+app.use("/", routes);
 
 createConnection()
   .then(async (_connection: Connection) => {
