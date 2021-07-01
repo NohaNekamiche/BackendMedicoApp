@@ -20,7 +20,7 @@ class AuthController {
 
     if ((user = await userRepository.findOneOrFail({ where: { phone } }))) {
 
-        if (!(user.checkIfUnencryptedPasswordIsValid(pwd))) {
+        if ((user.checkIfUnencryptedPasswordIsValid(pwd))) {
        
             res.status(401).send();
             return;

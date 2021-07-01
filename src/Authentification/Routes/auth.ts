@@ -8,6 +8,9 @@ const router = Router();
 //Login route
 router.post("/login", AuthController.login);
 router.post("/addUser", UserController.newUser);
+// VERIFY JWT
+//router.post("/addUser",[checkJwt], UserController.newUser);
+
 
 //Change my password
 

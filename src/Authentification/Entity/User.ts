@@ -1,6 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {Entity,  Unique, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
 import * as bcrypt from "bcryptjs";
 @Entity("Users")
+@Unique(["phone"])
 export class User extends BaseEntity {
 
     @PrimaryGeneratedColumn()
@@ -27,10 +28,10 @@ export class User extends BaseEntity {
       }
     
       checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
-       
+   
+        console.log(unencryptedPassword);
         console.log(bcrypt.compareSync(unencryptedPassword, this.pwd));
         console.log(this.pwd);
-        console.log(unencryptedPassword);
         
         return bcrypt.compareSync(unencryptedPassword, this.pwd)
       }
