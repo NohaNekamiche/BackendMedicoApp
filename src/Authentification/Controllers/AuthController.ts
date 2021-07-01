@@ -19,28 +19,25 @@ class AuthController {
     let user: User;
 
     if ((user = await userRepository.findOneOrFail({ where: { phone } }))) {
-
-        if ((user.checkIfUnencryptedPasswordIsValid(pwd))) {
-       
-            res.status(401).send();
-            return;
-          }
+      if (!user.checkIfUnencryptedPasswordIsValid(pwd)) {
+        console.log(pwd);
+        res.status(401).send();
+        return;
+      }
       const token = jwt.sign(
         { idUser: user.idUser, phone: user.phone },
-          config.jwtSecret,
+        config.jwtSecret,
         { expiresIn: "7d" }
       );
 
       //Send the jwt in the response
       res.header("auth", token).json({
         msg: "Login Sucesss",
-        token:token
+        token: token,
       });
     } else {
       res.status(401).send();
     }
-
-  
   };
 }
 export default AuthController;
