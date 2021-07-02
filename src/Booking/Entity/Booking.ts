@@ -3,20 +3,23 @@ import {Entity,  Unique, PrimaryGeneratedColumn, Column, BaseEntity} from "typeo
 export class Booking extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    idtraitement: number;
-
-    @Column()
     idbooking: number;
 
     @Column()
-    maladie: string;
+    idDoc: number;
 
     @Column()
-    explication: string;
+    idPatient: number;
 
     @Column()
-    medicaments: string;
+    explication: Text;
 
     @Column()
-    dateFintraitement: Date;
+    date: string;
+
+    @Column()
+    heure: string;
+
+    @Column()
+    Titre: string;
 }

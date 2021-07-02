@@ -18,5 +18,5 @@ export class Traitement extends BaseEntity {
     medicaments: string;
 
     @Column()
-    dateFintraitement: Date;
+    dateFinTraitement: string;
 }

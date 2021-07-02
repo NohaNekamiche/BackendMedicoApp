@@ -7,13 +7,13 @@ import {getConnection} from "typeorm";
 
 class TraitementController {
   static addTraitement = async (req: Request, res: Response) => {
-      let {idbookig,maladie,explication,medicaments,dateFintraitement}=req.body
+      let {idbooking,maladie,explication,medicaments,dateFinTraitement}=req.body
       let traitement=new Traitement();
-      traitement.idbooking=idbookig;
+      traitement.idbooking=idbooking;
       traitement.maladie=maladie;
       traitement.explication=explication;
       traitement.medicaments=medicaments;
-      traitement.dateFintraitement=dateFintraitement;
+      traitement.dateFinTraitement=dateFinTraitement;
 
       const traitementRepository=getRepository(Traitement);
       try{
@@ -37,12 +37,10 @@ class TraitementController {
     res.send(traitements);
  
 }*/
-static getAllTraitement = async(req:Request, res:Response) => {
-    const traitementRepository=getRepository(Traitement);
-    const traitements= await traitementRepository.find();
-    res.send(traitements);
-
-
+static getAllTraitement = async( req:any,res:any) => {
+    console.log(req);
+    const traitements= await Traitement.find()
+    return res.status(200).send(traitements);
 }
 
 }
