@@ -5,6 +5,7 @@
    "username": "root",
    "password": "",
    "database": "tdm_db",
+
    "synchronize": false,
    "logging": false,
 
