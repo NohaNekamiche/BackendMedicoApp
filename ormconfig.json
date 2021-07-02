@@ -15,7 +15,8 @@
    },
    "entities": [
       "src/Authentification/Entity/**/*.ts",
-      "src/Traitement/Entity/**/*.ts"
+      "src/Traitement/Entity/**/*.ts",
+      "src/Booking/Entity/**/*.ts"
 
    ],
    "migrations": [

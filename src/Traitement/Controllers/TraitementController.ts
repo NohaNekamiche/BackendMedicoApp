@@ -3,6 +3,8 @@ import * as jwt from "jsonwebtoken";
 import { getRepository } from "typeorm";
 import { Traitement } from "../Entity/Traitement";
 import {getConnection} from "typeorm";
+import { getManager } from 'typeorm'
+import { Booking } from "../../Booking/Entity/Booking";
 
 
 class TraitementController {
@@ -26,17 +28,25 @@ class TraitementController {
       res.status(200).send("Traitement created");
    
 }
-/*static getTraitementByUser = async(req:Request,res:Response) => {
-    let idbooking=req.body;
-    const traitementRepository=getRepository(Traitement);
-    const traitements = await getRepository(Traitement)
-                        .createQueryBuilder("traitement")
-                        .innerJoinAndSelect("traitement.idbooking","idbooking")
+static getTraitementByUser = async(_req:any,res:any) => {
+    let idPatient=_req.params.idPatient;
+   try { const traitements = await getManager()
+                        .createQueryBuilder()
+                        .from(Traitement ,'traitement')
+                        .innerJoin(Booking,'booking','traitement.idbooking=booking.idbooking')
+                        .where("booking.idPatient=:idPatient",{idPatient:idPatient})
+                        .getRawMany();
+                        return res.status(200).send(traitements);
+                    }
+    catch(e)
+    {
+        res.status(400).send(e)
+
+    }
 
 
-    res.send(traitements);
  
-}*/
+}
 static getAllTraitement = async( req:any,res:any) => {
     console.log(req);
     const traitements= await Traitement.find()
