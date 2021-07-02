@@ -12,7 +12,7 @@ export class Booking extends BaseEntity {
     idPatient: number;
 
     @Column()
-    explication: Text;
+    explication: string;
 
     @Column()
     date: string;
