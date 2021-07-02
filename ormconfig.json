@@ -14,7 +14,9 @@
       }
    },
    "entities": [
-      "src/Authentification/Entity/**/*.ts"
+      "src/Authentification/Entity/**/*.ts",
+      "src/Traitements/Entity/**/*.ts"
+
    ],
    "migrations": [
       "src/migration/**/*.ts"
