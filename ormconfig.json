@@ -1,18 +1,13 @@
 {
    "type": "mysql",
    "host": "localhost",
-   "port": 8080,
-   "username": "",
+   "port": 3306,
+   "username": "root",
    "password": "",
-   "database": "",
+   "database": "tdm_db",
    "synchronize": false,
    "logging": false,
-   "ssl": true,
-   "extra": {
-      "ssl": {
-         "rejectUnauthorized": false
-      }
-   },
+
    "entities": [
       "src/entity/**/*.ts"
    ],
