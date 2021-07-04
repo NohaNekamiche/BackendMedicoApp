@@ -1,10 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm"
-
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
 
 @Entity("Conseil")
-export class Conseil extends BaseEntity{
 
-    @PrimaryGeneratedColumn()
+export class conseil extends BaseEntity{
+    @PrimaryGeneratedColumn() 
     idconseil:number;
     @Column()
     IdDoc:number;

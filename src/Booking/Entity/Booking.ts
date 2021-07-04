@@ -1,12 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
 
 @Entity("Booking")
-export class Booking extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+export class booking extends BaseEntity{
+    @PrimaryGeneratedColumn() 
     idbooking:number;
     @Column()
-    IdDoc :number;
+    IdDoc:number;
     @Column()
     IdPatient:number;
     @Column()
@@ -15,8 +15,4 @@ export class Booking extends BaseEntity {
     heure:String;
     @Column()
     Titre:String;
-
 }
-
-
-

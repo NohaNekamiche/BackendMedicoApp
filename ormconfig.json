@@ -10,7 +10,14 @@
    "logging": false,
 
    "entities": [
-      "src/entity/**/*.ts"
+      "src/Authentification/Entity/**/*.ts",
+      "src/Traitement/Entity/**/*.ts",
+      "src/conseil/Entity/**/*.ts",
+      "src/booking/Entity/**/*.ts",
+      "src/doctor/Entity/**/*.ts",
+      "src/doctoremploi/Entity/**/*.ts"
+
+
    ],
    "migrations": [
       "src/migration/**/*.ts"
