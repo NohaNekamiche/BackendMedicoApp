@@ -13,7 +13,9 @@ export class Booking extends BaseEntity {
 
 
     @Column()
-    date: string;
+    jour: string;
+    @Column()
+    mois: string;
 
     @Column()
     heure: string;

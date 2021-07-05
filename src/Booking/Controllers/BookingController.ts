@@ -17,26 +17,29 @@ class BookingController{
     }
 
     static addBooking = async (req: Request, res: Response) => {
-        let {IdDoc,IdPatient,date,heure,Titre} =req.body;
-        let rdv=new Booking();
-        rdv.IdDoc=IdDoc;
-        rdv.IdPatient=IdPatient;
-        rdv.date=date;
-        rdv.heure=heure;
-        rdv.Titre=Titre;
-        console.log(rdv);
-        const bookingRepository=getRepository(Booking);
-        try{
-            await bookingRepository.save(rdv);
-        }catch (e){
-          res.status(409).send(e);
+
+        try {
+            const rdv= Booking.create({
+                IdDoc:req.body.IdDoc,
+                IdPatient:req.body.IdPatient,
+                jour:req.body.jour,
+                mois:req.body.mois,
+                heure:req.body.heure,
+                Titre:req.body.Titre,
+            })
+            await rdv.save()
+            console.log(rdv)
+            res.status(200).json({
+                msg:"Votre rendez-vous a ete crée avec succes",
+                booking:rdv
+            });
+    
+        } catch (e) {
+            res.status(409).send(e);
           console.log("Erreur lors de la création du rendez-vous",e);
           return;
         }
-        res.status(200).send("Votre rendez-vous a ete crée avec succes");
 
-
-     
     }
 }
 
