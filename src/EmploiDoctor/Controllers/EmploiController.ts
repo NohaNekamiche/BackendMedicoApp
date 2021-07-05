@@ -5,14 +5,14 @@ import {DoctorEmploi} from "../Entity/DoctorEmploi";
 
 class DoctorEmploiManager{
 
-    static AddEmploiByIdDoc=async(req:Request,res:Response)=>{
-        let {idDoc,jourlibre,moi,heurelibre,periode} =req.body
+    static AddEmploiByIdDoc=async(req:any,res:Response)=>{
+        let {IdDoc,jourlibre,moi,heurelibre} =req.body
         let emploi=new DoctorEmploi();
-        emploi.idDoc=idDoc;
+        emploi.IdDoc=IdDoc;
         emploi.jourlibre=jourlibre;
-        emploi.heurelibre=heurelibre;
         emploi.moi=moi;
-        emploi.periode=periode;
+        emploi.heurelibre=heurelibre;
+
         const emploiRepository=getRepository(DoctorEmploi);
         try{
             await emploiRepository.save(emploi);
@@ -22,21 +22,23 @@ class DoctorEmploiManager{
             console.log("erreur",e);
             return;
         }
+        res.status(200).send("Emploi created");
+
 
     }
 
-    static getEmlpoByIdDoc=async(req:any,res:any)=>{
+    static getEmploiByIdDoc=async(req:any,res:any)=>{
 
         let idDoc=req.params.id;
         console.log(idDoc);
         try {
-            const conseils= await getManager()
+            const emploi= await getManager()
             .createQueryBuilder()
             .from(DoctorEmploi,"emploi")
             .innerJoin(Doctors,"Doctors","Doctors.idDoc=emploi.idDoc")
             .where("emploi.idDoc=:id",{id:idDoc})
             .getRawMany();
-            return res.status(200).send(conseils);
+            return res.status(200).send(emploi);
     
         }
         catch (err) {
