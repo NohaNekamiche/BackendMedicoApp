@@ -52,13 +52,12 @@ static getTraitementByUser = async(_req:any,res:any) => {
 static getTraitementByCurrentDate = async(_req:any,res:any) => {
     let idPatient=_req.params.idPatient;
     let current=_req.params.current;
-    let idDoc=_req.params.idDoc;
    try { const traitements = await getManager()
                         .createQueryBuilder()
                         .from(Traitement ,'traitement')
                         .innerJoin(Booking,'booking','traitement.idbooking=booking.idbooking')
-                        .innerJoin(User,'user','user.idUser=booking.idDoc')
-                        .innerJoin(Doctors,'doctor','doctor.IdDoc=:idDoc',{idDoc:idDoc})
+                        .innerJoin(Doctors,'doctor','doctor.IdDoc=booking.IdDoc')
+                        .innerJoin(User,'user','user.idUser=doctor.IdUser')
                         .where("booking.idPatient=:idPatient",{idPatient:idPatient})
                         .andWhere("traitement.dateFinTraitement>:current",{current:current})
                         .getRawMany();
