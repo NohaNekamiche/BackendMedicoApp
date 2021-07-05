@@ -21,7 +21,7 @@ class AuthController {
     if ((user = await userRepository.findOneOrFail({ where: { phone } }))) {
       if (!user.checkIfUnencryptedPasswordIsValid(pwd)) {
         console.log(pwd);
-        res.status(401).send();
+        res.status(401).send("Mot de passe incorrect");
         return;
       }
       const token = jwt.sign(
@@ -32,11 +32,11 @@ class AuthController {
 
       //Send the jwt in the response
       res.header("auth", token).json({
-        msg: "Login Sucesss",
+        msg: "BIENVENUE !",
         token: token,
       });
     } else {
-      res.status(401).send();
+      res.status(401).send("Utilisateur n'existe pas !");
     }
   };
 }
