@@ -35,8 +35,8 @@ class DoctorEmploiManager{
             const emploi= await getManager()
             .createQueryBuilder()
             .from(DoctorEmploi,"emploi")
-            .innerJoin(Doctors,"Doctors","Doctors.idDoc=emploi.idDoc")
-            .where("emploi.idDoc=:id",{id:idDoc})
+            .innerJoin(Doctors,"Doctors","Doctors.idDoc=emploi.IdDoc")
+            .where("emploi.IdDoc=:id",{id:idDoc})
             .getRawMany();
             return res.status(200).send(emploi);
     
