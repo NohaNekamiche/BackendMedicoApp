@@ -48,6 +48,25 @@ class DoctorEmploiManager{
           }
         
         }
+        static deleteEmploiLibre = async (req: Request, res: Response) => {
+
+            let IdDoc=req.params.IdDoc;
+            let jourlibre=req.params.jourlibre;
+            let moi=req.params.moi;
+            let heurelibre=req.params.heurelibre
+
+            console.log(IdDoc)
+        
+            try {
+              const emploidelete = await DoctorEmploi.findOneOrFail({where :{IdDoc:IdDoc ,jourlibre:jourlibre,moi:moi,heurelibre:heurelibre}})
+              await emploidelete.remove();
+        
+              return res.status(200).json({ message: "Emploi deleted" });
+            } catch (err) {
+              console.log(err);
+              return res.status(500).json({ error: "Something went wrong" });
+            }
+          };
 
 }
 

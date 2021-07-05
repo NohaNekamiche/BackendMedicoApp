@@ -1,6 +1,7 @@
 import { Booking } from "../Entity/Booking";
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
+import { DoctorEmploi } from "../../EmploiDoctor/Entity/DoctorEmploi";
 
 class BookingController{
     static getAllBooking = async( req:any,res:any) => {
@@ -33,6 +34,7 @@ class BookingController{
                 msg:"Votre rendez-vous a ete crée avec succes",
                 booking:rdv
             });
+            
     
         } catch (e) {
             res.status(409).send(e);
@@ -41,6 +43,7 @@ class BookingController{
         }
 
     }
+
 }
 
 export default BookingController;
