@@ -49,10 +49,10 @@ class ConseilController{
             await demandeRepository.save(demande);
         }catch (e){
           res.status(409).send(e);
-          console.log("erreur",e);
+          console.log("Erreur lors de la création de la demande du conseil",e);
           return;
         }
-        res.status(200).send("demande send");
+        res.status(200).send("Votre demande de conseil a été crée avec succes");
     }
 
 /*    static docReponse=async(req:Request,res:Response)=>{

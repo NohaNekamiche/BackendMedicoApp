@@ -30,10 +30,10 @@ class BookingController{
             await bookingRepository.save(rdv);
         }catch (e){
           res.status(409).send(e);
-          console.log("erreur",e);
+          console.log("Erreur lors de la création du rendez-vous",e);
           return;
         }
-        res.status(200).send("rdv created");
+        res.status(200).send("Votre rendez-vous a ete crée avec succes");
 
 
      
