@@ -14,6 +14,10 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use("/", routes);
 
+app.get("/", (req,res) => {
+  res.send("APP STARTED")
+})
+
 createConnection()
   .then(async (_connection: Connection) => {
     app.listen(3000, () => {

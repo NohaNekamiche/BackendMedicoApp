@@ -16,7 +16,12 @@
    "entities": [
       "src/Authentification/Entity/**/*.ts",
       "src/Traitement/Entity/**/*.ts",
-      "src/Booking/Entity/**/*.ts"
+      "src/Booking/Entity/**/*.ts",
+      "src/Conseil/Entity/**/*.ts",
+      "src/Doctor/Entity/**/*.ts",
+      "src/EmploiDoctor/Entity/**/*.ts"
+
+
 
    ],
    "migrations": [

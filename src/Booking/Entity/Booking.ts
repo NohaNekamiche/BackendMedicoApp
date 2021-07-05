@@ -6,16 +6,15 @@ export class Booking extends BaseEntity {
     idbooking: number;
 
     @Column()
-    idDoc: number;
+    IdDoc: number;
 
     @Column()
-    idPatient: number;
+    IdPatient: number;
 
     @Column()
-    explication: string;
-
+    jour: string;
     @Column()
-    date: string;
+    mois: string;
 
     @Column()
     heure: string;
