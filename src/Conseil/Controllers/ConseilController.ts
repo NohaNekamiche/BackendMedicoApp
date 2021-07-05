@@ -19,7 +19,7 @@ class ConseilController{
         const conseils= await getManager()
         .createQueryBuilder()
         .from(Conseil,"conseils")
-        .innerJoin(Doctors,"Doctors","Doctors.idDoc=conseils.idDoc")
+        .innerJoin(Doctors,"Doctors","Doctors.IdDoc=conseils.IdDoc")
         .where("conseils.idPatient=:patient",{patient:idPatient})
         .getRawMany();
         return res.status(200).send(conseils);

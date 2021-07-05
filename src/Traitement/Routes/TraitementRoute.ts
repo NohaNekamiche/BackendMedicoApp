@@ -10,6 +10,8 @@ const router = Router();
 router.get("/getAllTraitement",TraitementController.getAllTraitement);
 router.get("/getTraitementByUser/:idPatient",TraitementController.getTraitementByUser);
 router.post("/addTraitement", TraitementController.addTraitement);
+router.get("/getTraitementByCurrentDate/:idPatient/:current/:idDoc",TraitementController.getTraitementByCurrentDate);
+
 // VERIFY JWT
 //router.post("/addUser",[checkJwt], UserController.newUser);
 
