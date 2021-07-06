@@ -54,6 +54,28 @@ class ConseilController{
         }
         res.status(200).send("Votre demande de conseil a été crée avec succes");
     }
+    static addLocal=async(req:Request,res:Response)=>{
+        
+        let {IdDoc,IdPatient,msg,obj,reponse} =req.body;
+
+
+        let demande=new Conseil();
+        demande.msg=msg;
+        demande.obj=obj;
+        demande.reponse=reponse;
+        demande.IdDoc=IdDoc;
+        demande.IdPatient=IdPatient;
+        console.log(demande);
+        const demandeRepository=getRepository(Conseil);
+        try{
+            await demandeRepository.save(demande);
+        }catch (e){
+          res.status(409).send(e);
+          console.log("Erreur lors de la création de la demande du conseil",e);
+          return;
+        }
+        res.status(200).send("Votre demande de conseil a été crée avec succes");
+    }
 
 /*    static docReponse=async(req:Request,res:Response)=>{
     }*/
