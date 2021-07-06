@@ -13,6 +13,7 @@ app.use(json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use("/", routes);
+app.use(express.static('public'));
 
 app.get("/", (req,res) => {
   res.send("APP STARTED")

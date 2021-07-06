@@ -2,6 +2,7 @@ import { getManager, getRepository } from "typeorm";
 import { Doctors } from "../../Doctor/Entity/Doctor";
 import { Conseil } from "../Entity/Conseil";
 import { Request, Response } from "express";
+import { User } from "../../Authentification/Entity/User";
 
 class ConseilController{
     
@@ -19,7 +20,8 @@ class ConseilController{
         const conseils= await getManager()
         .createQueryBuilder()
         .from(Conseil,"conseils")
-        .innerJoin(Doctors,"Doctors","Doctors.IdDoc=conseils.IdDoc")
+        .innerJoin(Doctors,"Doctors","Doctors.idDoc=conseils.idDoc")
+        .innerJoin(User,"user","user.idUser=Doctors.idUser")
         .where("conseils.idPatient=:patient",{patient:idPatient})
         .getRawMany();
         return res.status(200).send(conseils);
