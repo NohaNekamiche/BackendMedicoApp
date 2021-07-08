@@ -45,7 +45,7 @@ class BookingController{
     }
     static getBookingByIdPatientIdDoc=async(req:any,res:any)=>{
 
-        let idPatient=req.params.idPatient;
+        let idPatient=req.params.IdPatient;
         console.log(idPatient);
         try {
             const conseils= await getManager()
@@ -53,7 +53,7 @@ class BookingController{
             .from(Booking,"booking")
             .innerJoin(Doctors,"doctor","booking.IdDoc=doctor.IdDoc")
             .innerJoin(User,"user","user.idUser=doctor.IdUser")
-            .where("boooking.idPatient=:patient",{patient:idPatient})
+            .where("booking.IdPatient=:patient",{patient:idPatient})
             .getRawMany();
             return res.status(200).send(conseils);
     

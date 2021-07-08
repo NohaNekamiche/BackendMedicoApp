@@ -6,7 +6,7 @@ const router=Router();
 router.get('/getAllBooking',BookingController.getAllBooking);
 router.get('/getAllBooking',BookingController.getAllBooking);
 router.post('/addBooking',BookingController.addBooking);
-router.get('/getBookingByIdPatientIdDoc/:IdPatient',BookingController.getBookingByIdPatient);
+router.get('/getBookingByIdPatientIdDoc/:IdPatient',BookingController.getBookingByIdPatientIdDoc);
 router.get('/getBookingByIdPatient/:IdPatient',BookingController.getBookingByIdPatient);
 
 
