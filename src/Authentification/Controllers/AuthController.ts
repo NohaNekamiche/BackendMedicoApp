@@ -34,6 +34,7 @@ class AuthController {
       res.header("auth", token).json({
         msg: "BIENVENUE !",
         token: token,
+        idUser:user.idUser
       });
     } else {
       res.status(401).send("Utilisateur n'existe pas !");

@@ -5,6 +5,8 @@ import { Traitement } from "../Entity/Traitement";
 import {getConnection} from "typeorm";
 import { getManager } from 'typeorm'
 import { Booking } from "../../Booking/Entity/Booking";
+import { User } from "../../Authentification/Entity/User";
+import { Doctors } from "../../Doctor/Entity/Doctor";
 
 
 class TraitementController {
@@ -35,6 +37,29 @@ static getTraitementByUser = async(_req:any,res:any) => {
                         .from(Traitement ,'traitement')
                         .innerJoin(Booking,'booking','traitement.idbooking=booking.idbooking')
                         .where("booking.idPatient=:idPatient",{idPatient:idPatient})
+                        .getRawMany();
+                        return res.status(200).send(traitements);
+                    }
+    catch(e)
+    {
+        res.status(400).send(e)
+
+    }
+
+
+ 
+}
+static getTraitementByCurrentDate = async(_req:any,res:any) => {
+    let idPatient=_req.params.idPatient;
+    let current=_req.params.current;
+   try { const traitements = await getManager()
+                        .createQueryBuilder()
+                        .from(Traitement ,'traitement')
+                        .innerJoin(Booking,'booking','traitement.idbooking=booking.idbooking')
+                        .innerJoin(Doctors,'doctor','doctor.IdDoc=booking.IdDoc')
+                        .innerJoin(User,'user','user.idUser=doctor.IdUser')
+                        .where("booking.idPatient=:idPatient",{idPatient:idPatient})
+                        .andWhere("traitement.dateFinTraitement>:current",{current:current})
                         .getRawMany();
                         return res.status(200).send(traitements);
                     }

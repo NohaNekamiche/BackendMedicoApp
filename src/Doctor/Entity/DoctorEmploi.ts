@@ -6,11 +6,15 @@ export class DoctorEmploi extends BaseEntity{
 @PrimaryGeneratedColumn()
 id: number;
 @Column()
-IdDoc:number;
+idDoc:number;
 @Column()
-dateLibre:String;
+jourlibre:String;
 @Column()
-heure:String;
+moi:String
+@Column()
+heurelibre:String
+@Column()
+periode:String
 
 
 

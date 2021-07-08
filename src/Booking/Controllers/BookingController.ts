@@ -1,6 +1,8 @@
 import { Booking } from "../Entity/Booking";
+import { getManager, getRepository } from "typeorm";
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { User } from "../../Authentification/Entity/User";
+import { Doctors } from "../../Doctor/Entity/Doctor";
 
 class BookingController{
     static getAllBooking = async( req:any,res:any) => {
@@ -20,12 +22,11 @@ class BookingController{
 
         try {
             const rdv= Booking.create({
-                IdDoc:req.body.IdDoc,
-                IdPatient:req.body.IdPatient,
-                jour:req.body.jour,
-                mois:req.body.mois,
-                heure:req.body.heure,
-                Titre:req.body.Titre,
+               IdDoc:req.body.IdDoc,
+               IdPatient:req.body.IdPatient,
+               date:req.body.date,
+               heure:req.body.heure,
+               Titre:req.body.Titre
             })
             await rdv.save()
             console.log(rdv)
@@ -42,7 +43,29 @@ class BookingController{
         }
 
     }
+    static getBookingByIdPatientIdDoc=async(req:any,res:any)=>{
+
+        let idPatient=req.params.IdPatient;
+        console.log(idPatient);
+        try {
+            const conseils= await getManager()
+            .createQueryBuilder()
+            .from(Booking,"booking")
+            .innerJoin(Doctors,"doctor","booking.IdDoc=doctor.IdDoc")
+            .innerJoin(User,"user","user.idUser=doctor.IdUser")
+            .where("booking.IdPatient=:patient",{patient:idPatient})
+            .getRawMany();
+            return res.status(200).send(conseils);
+    
+        }
+        catch (err) {
+            res.status(500).send({
+              message: err.message,
+            });
+          }
+        }
 
 }
+ 
 
 export default BookingController;

@@ -12,13 +12,11 @@ export class Booking extends BaseEntity {
     IdPatient: number;
 
     @Column()
-    jour: string;
-    @Column()
-    mois: string;
+    date: string;
 
     @Column()
     heure: string;
-
     @Column()
     Titre: string;
 }
+ 
